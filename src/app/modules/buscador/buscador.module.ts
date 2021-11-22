@@ -12,6 +12,9 @@ import { FiltrosComponent } from './filtros/filtros.component';
   imports: [
     CommonModule,
     BuscadorRoutingModule
+  ],
+  exports: [
+    FiltrosComponent
   ]
 })
 export class BuscadorModule { }
