@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { PeliculaServiceService } from '../service/pelicula-service.service';
 
 @Component({
   selector: 'app-lista-peliculas',
@@ -13,3 +15,4 @@ export class ListaPeliculasComponent implements OnInit {
   }
 
 }
+const peliculaServicio  = new PeliculaServiceService(http)
