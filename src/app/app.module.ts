@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { PeliculasModule } from './modules/peliculas/peliculas.module';
 import { BuscadorModule } from './modules/buscador/buscador.module';
+import { PeliculaServiceService } from './modules/peliculas/service/pelicula-service.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,10 @@ import { BuscadorModule } from './modules/buscador/buscador.module';
     PeliculasModule,
     BuscadorModule
   ],
-  providers: [],
+  providers: [
+    PeliculaServiceService,
+    HttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,8 +9,7 @@ const routes: Routes = [
   { path: 'peliculas', loadChildren:()=>import('./modules/peliculas/peliculas.module')
 	.then(m=>m.PeliculasModule)},
   { path: 'buscador', loadChildren:()=>import('./modules/buscador/buscador.module')
-	.then(m=>m.BuscadorModule)},
-  { path: '', redirectTo: '/inicio', pathMatch: 'full' }
+	.then(m=>m.BuscadorModule)}
 ];
 
 
@@ -19,7 +18,7 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes,)
   ]
   
 })
