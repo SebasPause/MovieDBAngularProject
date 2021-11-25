@@ -6,6 +6,7 @@ import { PeliculaComponent } from './lista-peliculas/pelicula/pelicula.component
 
 
 
+
 @NgModule({
   declarations: [
     ListaPeliculasComponent,
