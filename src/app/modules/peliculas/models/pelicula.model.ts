@@ -1,6 +1,6 @@
 import { GenerateOptions } from "rxjs/internal/observable/generate";
 
-export interface pelicula {
+export class pelicula {
     adult: boolean;
     backdrop_path: string;
     genre_ids: number[];

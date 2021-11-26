@@ -1,6 +1,6 @@
 import { pelicula } from "./pelicula.model";
 
-export interface listaPeliculas {
+export class listaPeliculas {
     page: number;
     results: pelicula[];
     total_pages: number;

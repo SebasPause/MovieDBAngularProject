@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { listaPeliculas } from '../models/listaPeliculas.model';
+import { pelicula } from '../models/pelicula.model';
 import { PeliculaServiceService } from '../service/pelicula-service.service';
 
 @Component({
@@ -10,20 +12,22 @@ import { PeliculaServiceService } from '../service/pelicula-service.service';
 })
 export class ListaPeliculasComponent implements OnInit {
 
+  peliculas: pelicula[];
 
-  constructor(private peliculaService:  PeliculaServiceService) { }
-
-  ngOnInit() {
-    this.getAll();
+  constructor(private peliculaService: PeliculaServiceService) { 
+     
   }
 
-  public getAll() {
+  ngOnInit() {
     this.peliculaService.GetAll().subscribe(res => {
       console.log(res);
+      this.peliculas = res.results;
     },
     error => {
-      console.error(error);
-    });
+      console.log(error);
+    }
+    );
+    
   }
 
 }
