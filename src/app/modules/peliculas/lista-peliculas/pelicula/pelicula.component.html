@@ -1,4 +1,35 @@
-<div class="pelicula">
-    <p>{{ pelicula.id }}</p>
-    <p>{{ pelicula.title }}</p>
+<div class="pelicula table">
+    <span id="estrella">&star;</span>
+    <div class="col">
+        <td class="row header justify-content-center"><img src="https://image.tmdb.org/t/p/original/{{pelicula.poster_path}}" alt=""></td>
+    </div>
+    <div class="col">
+        <td class="row header justify-content-center">Titulo</td>
+        <tr class="row justify-content-center">{{ pelicula.title }}</tr>
+    </div>
+    <div class="col">
+        <td class="row header justify-content-center">Titulo Original</td>
+        <tr class="row justify-content-center">{{ pelicula.original_title }}</tr>
+    </div>
+    <div class="col">
+        <td class="row header justify-content-center" style="text-align:  center;">Idioma</td>
+        <tr class="row justify-content-center text-uppercase ">{{ pelicula.original_language}}</tr>
+    </div>
+    <div class="col">
+        <td class="row header justify-content-center">Fecha de lanzamiento</td>
+        <tr class="row justify-content-center">{{ pelicula.release_date}}</tr>
+    </div>
+    <div class="col">
+        <td class="row header justify-content-center">Número de votos</td>
+        <tr class="row justify-content-center">{{ pelicula.vote_count}}</tr>
+    </div>
+    <div class="col">
+        <td class="row header justify-content-center">Genero</td>
+        <tr class="row justify-content-center">{{ pelicula.vote_count}}</tr>
+    </div>
+    <div class="col" style="text-align: justify;">
+        <td class="row header justify-content-center">Descripción</td>
+        <tr class="row justify-content-center text-uppercase">{{ pelicula.overview}}</tr>
+    </div>
+    
 </div>

@@ -1,0 +1,21 @@
+.header {
+    font-weight: bold;
+}
+
+img {
+    width: 80%;
+    height: 80%;
+}
+
+.pelicula {
+    width: 100%;
+    grid-template-rows: 1fr;
+    
+}
+
+#estrella {
+    position: relative;
+    float: right;    
+    font-size: 200%;
+    margin-top: 2%;
+}
