@@ -20,7 +20,7 @@ export class PeliculaServiceService {
   }
 
   public GetGenres(): Observable<listaGeneros>{
-    return this.http.get<listaGeneros>('https://developers.themoviedb.org/3/genres/get-movie-list?api_key=7d1e614246e33b9b52f42a293ca206f7');
+    return this.http.get<listaGeneros>('https://api.themoviedb.org/3/genre/movie/list?api_key=7d1e614246e33b9b52f42a293ca206f7');
   }
 
 }
