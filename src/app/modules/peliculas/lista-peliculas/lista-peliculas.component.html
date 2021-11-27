@@ -1,3 +1,5 @@
-<p>lista-peliculas works!</p>
-<app-pelicula *ngFor="let pelicula of peliculas" [pelicula]="pelicula">
-</app-pelicula>
+<div class="container-fluid">
+    <div class="row mt-3">
+        <app-pelicula class="col-md-3" *ngFor="let pelicula of peliculas" [pelicula]="pelicula"></app-pelicula>
+    </div>
+</div>
