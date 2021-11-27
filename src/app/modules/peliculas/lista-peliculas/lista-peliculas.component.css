@@ -1,7 +1,9 @@
 .container-fluid {
-    background-color: rgb(215, 219, 215);
+    background-color: white;
     margin-right: 10px;
     margin-left: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .col-md-3 {
@@ -9,21 +11,13 @@
     margin-left: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
-
+    margin-right: 10px;
+    border-radius: 10px;
+    border: 3x solid black;
+    border-style: solid;
+    box-shadow: 5px 5px 6px black, 5px 5px 4px black;
 }
 
 .row {
     text-align: center;
 }
-
-/* Extra small devices (phones, less than 768px) */
-/* No media query since this is the default in Bootstrap */
-
-/* Small devices (tablets, 768px and up) */
-@media (min-width: @screen-sm-min) {  }
-
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: @screen-md-min) {  }
-
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: @screen-lg-min) {  }
