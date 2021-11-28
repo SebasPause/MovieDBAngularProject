@@ -1,6 +1,23 @@
 .container-fluid {
-    margin-right: 10px;
-    margin-left: 10px;
+    width: 70%;
+    margin-left: 15%;
     display: flex;
     justify-content: center;
+    background-color: blanchedalmond;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+
+input  {
+    display: flex;
+    box-sizing: border-box;
+}
+
+p {
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+button {
+    margin-bottom: 5%;
 }
