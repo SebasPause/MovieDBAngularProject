@@ -1,8 +1,22 @@
 <div class="detalle" >
-        <img src="https://image.tmdb.org/t/p/original/{{detalle?.poster_path}}" alt="">
-        <table>
-            <th>Titulo</th>
-            <tr>{{detalle?.title}}</tr>
-        </table>
     <button (click)="ocultar()">Ocultar</button>
+    <img src="https://image.tmdb.org/t/p/original/{{detalle?.poster_path}}" alt="">
+    <table>
+        <tr><img style="margin-left: 30%" src="https://image.tmdb.org/t/p/original/{{detalle?.backdrop_path}}" alt=""></tr>
+        <th>Titulo</th>
+        <tr>{{detalle?.title}}</tr>
+        <th>Titulo Original</th>
+        <tr>{{detalle?.original_title}}</tr>
+        <th>Descripción</th>
+        <tr>{{detalle?.overview}}</tr>
+        <th>Idioma</th>
+        <tr class="text-uppercase">{{detalle?.original_language}}</tr>
+        <th>Fecha de lanzamiento</th>
+        <tr>{{detalle?.release_date}}</tr>
+        <th>Votos</th>
+        <tr>{{detalle?.vote_count}}</tr>
+        <th>Puntuación media de votos</th>
+        <tr>{{detalle?.vote_average}}</tr>
+    </table>
+    
 </div>

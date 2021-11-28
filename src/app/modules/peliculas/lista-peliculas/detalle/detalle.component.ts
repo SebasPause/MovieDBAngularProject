@@ -3,6 +3,7 @@ import { pelicula } from '../../models/pelicula.model';
 import { PeliculaServiceService } from '../../service/pelicula-service.service';
 import { ListaPeliculasComponent } from '../lista-peliculas.component';
 import { Observable } from 'rxjs';
+import { genero } from '../../models/genero.model';
 
 @Component({
   selector: 'app-detalle',
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs';
 export class DetalleComponent implements OnInit {
 
   @Input() detalle: pelicula;
+  nombreGenero: string;
 
   constructor(private  peliculaService: PeliculaServiceService,private listaPeliculas: ListaPeliculasComponent) { }
 
@@ -22,5 +24,6 @@ export class DetalleComponent implements OnInit {
   ocultar(){
     this.listaPeliculas.cambiarIndex();
   }
+
 
 }
