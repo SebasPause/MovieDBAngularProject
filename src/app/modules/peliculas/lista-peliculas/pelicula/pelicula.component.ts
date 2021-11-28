@@ -46,4 +46,6 @@ export class PeliculaComponent implements OnInit {
   getNameById(id?){
     return this.listaGeneros?.find(x => x.id === id);
   }
+
+
 }

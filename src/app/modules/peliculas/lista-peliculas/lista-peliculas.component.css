@@ -4,6 +4,8 @@
     margin-left: 10px;
     display: flex;
     justify-content: center;
+    position: absolute;
+    z-index: -2;
 }
 
 .col-md-3 {
@@ -20,4 +22,16 @@
 
 .row {
     text-align: center;
+}
+
+.detallePelicula {
+    z-index: 1;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    background-color: blanchedalmond;
+    width: 70%;
+    text-align: center;
+
+   
 }

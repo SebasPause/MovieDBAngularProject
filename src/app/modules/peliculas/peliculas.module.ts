@@ -5,7 +5,7 @@ import { ListaPeliculasComponent } from './lista-peliculas/lista-peliculas.compo
 import { PeliculaComponent } from './lista-peliculas/pelicula/pelicula.component';
 import { PeliculaServiceService } from './service/pelicula-service.service';
 import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
-import { DetalleComponent } from './lista-peliculas/pelicula/detalle/detalle.component';
+import { DetalleComponent } from './lista-peliculas/detalle/detalle.component';
 
 
 

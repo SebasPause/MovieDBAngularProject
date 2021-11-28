@@ -4,6 +4,7 @@ import { listaPeliculas } from '../models/listaPeliculas.model';
 import { Observable } from 'rxjs';
 import { genero } from '../models/genero.model';
 import { listaGeneros } from '../models/listaGeneros.model';
+import { pelicula } from '../models/pelicula.model';
 
 
 @Injectable({
@@ -21,6 +22,10 @@ export class PeliculaServiceService {
 
   public GetGenres(): Observable<listaGeneros>{
     return this.http.get<listaGeneros>('https://api.themoviedb.org/3/genre/movie/list?api_key=7d1e614246e33b9b52f42a293ca206f7');
+  }
+
+  public getMovieById(id: any): Observable<pelicula>{
+    return this.http.get<pelicula>('https://api.themoviedb.org/3/movie/{{id}}?api_key=7d1e614246e33b9b52f42a293ca206f7');
   }
 
 }

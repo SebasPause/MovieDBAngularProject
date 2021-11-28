@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { FiltrosComponent } from '../buscador/filtros/filtros.component';
 import { ListaPeliculasComponent } from './lista-peliculas/lista-peliculas.component';
-import { DetalleComponent } from './lista-peliculas/pelicula/detalle/detalle.component';
+import { DetalleComponent } from './lista-peliculas/detalle/detalle.component';
 import { PeliculaComponent } from './lista-peliculas/pelicula/pelicula.component';
 
 const routes: Routes = [

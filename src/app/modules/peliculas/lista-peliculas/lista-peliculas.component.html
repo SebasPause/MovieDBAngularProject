@@ -1,5 +1,8 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <app-pelicula class="col-md-3" *ngFor="let pelicula of peliculas" [pelicula]="pelicula"></app-pelicula>
+        <app-pelicula class="col-md-3" *ngFor="let pelicula of peliculas" [pelicula]="pelicula" (click)="mostrarDetalle(pelicula)"></app-pelicula>
     </div>
+</div>
+<div class="detallePelicula">
+    <app-detalle></app-detalle>
 </div>
