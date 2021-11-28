@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { genero } from '../models/genero.model';
 import { listaPeliculas } from '../models/listaPeliculas.model';
@@ -14,7 +14,6 @@ import { PeliculaServiceService } from '../service/pelicula-service.service';
 export class ListaPeliculasComponent implements OnInit {
 
   peliculas: pelicula[];
-  listaGeneros: genero[];
 
   constructor(private peliculaService: PeliculaServiceService) { 
      
@@ -29,16 +28,6 @@ export class ListaPeliculasComponent implements OnInit {
       console.log(error);
     }
     );
-
-    this.peliculaService.GetGenres().subscribe(res => {
-      this.listaGeneros = res.genres
-      console.log(this.listaGeneros);
-    },
-    error => {
-      console.log(error);
-    }
-    );
-    
   }
 
 }

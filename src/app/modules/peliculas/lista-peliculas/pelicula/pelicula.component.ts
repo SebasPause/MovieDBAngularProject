@@ -1,5 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { forEachChild } from 'typescript';
+import { genero } from '../../models/genero.model';
+import { listaGeneros } from '../../models/listaGeneros.model';
 import { pelicula } from '../../models/pelicula.model';
+import { PeliculaServiceService } from '../../service/pelicula-service.service';
+import { ListaPeliculasComponent } from '../lista-peliculas.component';
 
 @Component({
   selector: 'app-pelicula',
@@ -10,10 +15,35 @@ export class PeliculaComponent implements OnInit {
 
   @Input()
   pelicula: pelicula;
+  nombreGenero: string;
+  listaGeneros: genero[];
+  numero: number;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private peliculaService: PeliculaServiceService) { 
+    this.numero = 1;
   }
 
+  ngOnInit() {
+    this.peliculaService.GetGenres().subscribe(res => {
+      this.listaGeneros = res.genres;
+    },
+    error => {
+      console.log(error);
+    }
+    );
+  }
+
+  comprobarGenero(genero: any): string {
+    this.nombreGenero = ""
+    console.log("Generos ids: "+genero);
+    genero.forEach(element => {
+      this.nombreGenero += this.getNameById(element)?.name + " ";
+    });
+    return this.nombreGenero;
+  }
+ 
+
+  getNameById(id?){
+    return this.listaGeneros?.find(x => x.id === id);
+  }
 }

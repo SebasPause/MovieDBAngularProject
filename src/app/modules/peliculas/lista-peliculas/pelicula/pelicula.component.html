@@ -25,11 +25,11 @@
     </div>
     <div class="col">
         <td class="row header justify-content-center">Genero</td>
-        <tr class="row justify-content-center">{{ pelicula.vote_count}}</tr>
+        <tr class="row justify-content-center">{{ comprobarGenero(pelicula.genre_ids) }}</tr>
     </div>
     <div class="col" style="text-align: justify;">
         <td class="row header justify-content-center">Descripción</td>
-        <tr class="row justify-content-center text-uppercase">{{ pelicula.overview}}</tr>
+        <tr class="row justify-content-center">{{ pelicula.overview}}</tr>
     </div>
     
 </div>
