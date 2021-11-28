@@ -5,6 +5,7 @@ import { ListaPeliculasComponent } from './lista-peliculas/lista-peliculas.compo
 import { PeliculaComponent } from './lista-peliculas/pelicula/pelicula.component';
 import { PeliculaServiceService } from './service/pelicula-service.service';
 import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+import { DetalleComponent } from './lista-peliculas/pelicula/detalle/detalle.component';
 
 
 
@@ -12,7 +13,8 @@ import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http'
 @NgModule({
   declarations: [
     ListaPeliculasComponent,
-    PeliculaComponent
+    PeliculaComponent,
+    DetalleComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http'
   ],
   exports:  [
     ListaPeliculasComponent,
-    PeliculaComponent
+    PeliculaComponent,
+    DetalleComponent
   ],
   providers: [
     PeliculaServiceService,
