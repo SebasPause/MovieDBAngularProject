@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FiltrosComponent implements OnInit {
 
+  titulo: string;
+
   constructor() { }
 
   ngOnInit(): void {
+    
+  }
+
+  cambiarBusqueda(event: any,filtro: string): void{
+    
   }
 
 }
