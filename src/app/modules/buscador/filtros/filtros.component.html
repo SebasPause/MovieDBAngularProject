@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <div>
-        <tr><p>Titulo   <input type="text"></p></tr>
-        <tr><p>Titulo Original  <input type="text"></p></tr>
-        <tr><p>Descripción  <input type="text"></p></tr>
+        <tr><p>Titulo   <input type="text" (input)="cambiarBusqueda($event.target,'titulo')"></p></tr>
+        <tr><p>Titulo Original  <input type="text" (input)="cambiarBusqueda($event.target,'tituloOriginal')"></p></tr>
+        <tr><p>Descripción  <input type="text" (input)="cambiarBusqueda($event.target,'descripcion')"></p></tr>
         <button>Filtrar 10 más populares</button>
     </div>
 </div>
