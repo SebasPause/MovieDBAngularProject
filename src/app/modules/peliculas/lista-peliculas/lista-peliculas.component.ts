@@ -14,7 +14,7 @@ import { PeliculaServiceService } from '../service/pelicula-service.service';
 export class ListaPeliculasComponent implements OnInit {
 
   peliculas: pelicula[];
-  idPelicula:  any;
+  idPelicula: any;
 
   constructor(private peliculaService: PeliculaServiceService) { 
      
@@ -33,6 +33,15 @@ export class ListaPeliculasComponent implements OnInit {
 
   mostrarDetalle(pelicula: any){
     this.idPelicula = pelicula.id;
+    console.log("click");
+    this.peliculaService.getMovieById(this.idPelicula).subscribe(res => {
+      console.log(res.id);
+      
+    },
+    error => {
+      console.log(error);
+    }
+    );
   }
 
 }

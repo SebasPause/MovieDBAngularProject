@@ -35,7 +35,6 @@ export class PeliculaComponent implements OnInit {
 
   comprobarGenero(genero: any): string {
     this.nombreGenero = ""
-    console.log("Generos ids: "+genero);
     genero.forEach(element => {
       this.nombreGenero += this.getNameById(element)?.name + " ";
     });
