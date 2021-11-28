@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { pelicula } from '../../models/pelicula.model';
 import { PeliculaServiceService } from '../../service/pelicula-service.service';
+import { ListaPeliculasComponent } from '../lista-peliculas.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-detalle',
@@ -8,14 +11,16 @@ import { PeliculaServiceService } from '../../service/pelicula-service.service';
 })
 export class DetalleComponent implements OnInit {
 
-  @Input() idPelicula: any;
+  @Input() detalle: pelicula;
 
-  constructor(private  peliculaService: PeliculaServiceService) { }
+  constructor(private  peliculaService: PeliculaServiceService,private listaPeliculas: ListaPeliculasComponent) { }
 
   ngOnInit() {
-    
+     
   }
 
-  
+  ocultar(){
+    this.listaPeliculas.cambiarIndex();
+  }
 
 }

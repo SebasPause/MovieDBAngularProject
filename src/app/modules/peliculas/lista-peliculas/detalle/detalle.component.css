@@ -1,0 +1,17 @@
+img {
+    width: 30%;
+    float: left;
+    margin-right: 2%;
+    margin-bottom: 2%;
+}
+
+.detalle {
+    text-align: left;
+    margin: 2%;
+}
+
+
+button {
+    float: right;
+    align-self: flex-end;
+}

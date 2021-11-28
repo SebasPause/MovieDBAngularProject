@@ -1,8 +1,8 @@
-<div class="container-fluid">
+<div class="container-fluid" [style.z-index]="isVisibleContainer ? '2' : '-2' " >
     <div class="row justify-content-center">
         <app-pelicula class="col-md-3" *ngFor="let pelicula of peliculas" [pelicula]="pelicula" (click)="mostrarDetalle(pelicula)"></app-pelicula>
     </div>
 </div>
-<div class="detallePelicula">
-    <app-detalle></app-detalle>
+<div class="detallePelicula" [style.z-index]="isVisible ? '2' : '-2' ">
+    <app-detalle [detalle]="detalle"></app-detalle>
 </div>

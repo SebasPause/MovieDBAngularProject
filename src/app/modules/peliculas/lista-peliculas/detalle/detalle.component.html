@@ -1,5 +1,8 @@
-<div class="detalle table">
-    <div class="col">
-        <td class="row header justify-content-center"><img src="" alt=""></td>
-    </div>
+<div class="detalle" >
+        <img src="https://image.tmdb.org/t/p/original/{{detalle?.poster_path}}" alt="">
+        <table>
+            <th>Titulo</th>
+            <tr>{{detalle?.title}}</tr>
+        </table>
+    <button (click)="ocultar()">Ocultar</button>
 </div>

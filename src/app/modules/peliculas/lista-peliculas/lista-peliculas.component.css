@@ -26,12 +26,14 @@
 
 .detallePelicula {
     z-index: -1;
-    margin: auto;
     display: flex;
     justify-content: center;
     background-color: blanchedalmond;
     width: 70%;
-    text-align: center;
-
+    border: 3x solid black;
+    border-style: solid;
+    position: fixed;
+    margin-left: 15%;
+    margin-top: 5%;
    
 }

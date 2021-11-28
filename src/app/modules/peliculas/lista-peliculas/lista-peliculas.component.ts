@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { genero } from '../models/genero.model';
 import { listaPeliculas } from '../models/listaPeliculas.model';
@@ -15,7 +15,9 @@ export class ListaPeliculasComponent implements OnInit {
 
   peliculas: pelicula[];
   idPelicula: any;
-
+  isVisible = false;
+  isVisibleContainer = true;
+  detalle: pelicula;
   constructor(private peliculaService: PeliculaServiceService) { 
      
   }
@@ -33,15 +35,23 @@ export class ListaPeliculasComponent implements OnInit {
 
   mostrarDetalle(pelicula: any){
     this.idPelicula = pelicula.id;
-    console.log("click");
+    this.isVisible = true;
+    this.isVisibleContainer = false;
+
     this.peliculaService.getMovieById(this.idPelicula).subscribe(res => {
-      console.log(res.id);
-      
+      console.log("id:"+res.id);
+      this.detalle = res;
     },
     error => {
       console.log(error);
     }
     );
+  }
+    
+
+  cambiarIndex(){
+    this.isVisible = false;
+    this.isVisibleContainer = true;
   }
 
 }
