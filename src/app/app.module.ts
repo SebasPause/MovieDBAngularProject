@@ -8,6 +8,7 @@ import { PeliculasModule } from './modules/peliculas/peliculas.module';
 import { BuscadorModule } from './modules/buscador/buscador.module';
 import { PeliculaServiceService } from './modules/peliculas/service/pelicula-service.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
+import { ListaPeliculasComponent } from './modules/peliculas/lista-peliculas/lista-peliculas.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
   ],
   providers: [
     PeliculaServiceService,
-    HttpClient
+    HttpClient,
+    ListaPeliculasComponent
   ],
   bootstrap: [AppComponent]
 })

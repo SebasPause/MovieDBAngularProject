@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ObservadorService } from 'src/app/service/observador.service';
 
 @Component({
   selector: 'app-filtros',
@@ -9,14 +10,27 @@ export class FiltrosComponent implements OnInit {
 
   titulo: string;
 
-  constructor() { }
+  constructor(private observador: ObservadorService) { }
 
   ngOnInit(): void {
     
   }
 
   cambiarBusqueda(event: any,filtro: string): void{
-    
+    switch(filtro){
+      case 'titulo':{
+        this.observador.cambiarFiltro(event.value);
+        break;
+      }
+      case 'tituloOriginal':{
+        this.observador.tituloOriginal = event.value;
+        break;
+      }
+      case 'descripcion':{
+        this.observador.descripcion = event.value;
+        break;
+      }
+    }
   }
 
 }

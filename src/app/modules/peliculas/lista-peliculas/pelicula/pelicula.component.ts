@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/compiler/src/compiler_facade_interface';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { forEachChild } from 'typescript';
 import { genero } from '../../models/genero.model';
 import { listaGeneros } from '../../models/listaGeneros.model';
@@ -13,13 +14,12 @@ import { ListaPeliculasComponent } from '../lista-peliculas.component';
 })
 export class PeliculaComponent implements OnInit {
 
-  @Input()
-  pelicula: pelicula;
+  @Input() pelicula: pelicula;
   nombreGenero: string;
   listaGeneros: genero[];
   numero: number;
 
-  constructor(private peliculaService: PeliculaServiceService) { 
+  constructor(private peliculaService: PeliculaServiceService,private listaPelicula: ListaPeliculasComponent) { 
     this.numero = 1;
   }
 
