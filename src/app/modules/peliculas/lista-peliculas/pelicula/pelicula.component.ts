@@ -35,7 +35,7 @@ export class PeliculaComponent implements OnInit,OnChanges {
 
   comprobarGenero(genero: any): string {
     this.nombreGenero = ""
-    genero.forEach(element => {
+    genero?.forEach(element => {
       this.nombreGenero += this.getNameById(element)?.name + " ";
     });
     return this.nombreGenero;

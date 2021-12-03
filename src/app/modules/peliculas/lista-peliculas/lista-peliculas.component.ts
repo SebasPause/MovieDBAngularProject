@@ -21,13 +21,13 @@ export class ListaPeliculasComponent implements OnInit {
   isVisibleContainer = true;
   detalle: pelicula;
   mostrarTodo: boolean = true;
+  idPagina: number = (Math.random() * (10000000000-0)) +6;
 
-  constructor(private peliculaService: PeliculaServiceService) { 
+  constructor(private peliculaService: PeliculaServiceService,private observador: ObservadorService) { 
      
   }
 
   ngOnInit() {
-    if(this.mostrarTodo == true){
       this.peliculaService.GetAll().subscribe(res => {
         res.results.forEach(element => {
           this.peliculas.push(element);
@@ -37,11 +37,12 @@ export class ListaPeliculasComponent implements OnInit {
         console.log(error);
       }
       );
-    }else{
-      
-
-    }
-    
+      if(this.observador.subsVar === undefined) {
+        this.observador.subsVar = this.observador.open.subscribe((filtro: any) => {
+          this.setPelicula(filtro);
+        });
+      } 
+    this.mostrarId();
   }
 
   mostrarDetalle(pelicula: any){
@@ -65,21 +66,19 @@ export class ListaPeliculasComponent implements OnInit {
   }
 
   setPelicula(filtro: any){
-    console.log(this.peliculas.length);
-    
-    this.peliculas.forEach(e => {
-      delete this.peliculas[this.peliculas.indexOf(e)];
-    });
-    filtro.forEach(element => {
-      element.trackId = Math.random() * (10000000000-0);
+    /*filtro.forEach(element => {
       this.peliculas.push(element);
-    });  
-    this.mostrarTodo = false;
+    });*/
+    this.peliculas = filtro;
   }
 
-  public trackItem(index: number,item: pelicula){
-    return item.trackId
+
+  mostrarId(){
+    console.log(this.idPagina);
+    
   }
+
+  
 
 }
 

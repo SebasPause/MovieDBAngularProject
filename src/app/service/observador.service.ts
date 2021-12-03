@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { ListaPeliculasComponent } from '../modules/peliculas/lista-peliculas/lista-peliculas.component';
 import { pelicula } from '../modules/peliculas/models/pelicula.model';
 import { PeliculaServiceService } from '../modules/peliculas/service/pelicula-service.service';
@@ -9,54 +9,75 @@ import { PeliculaServiceService } from '../modules/peliculas/service/pelicula-se
 })
 export class ObservadorService {
 
-  titulo: Observable<string>;
+  open: EventEmitter<any> = new EventEmitter();
+  subsVar: Subscription;
+  titulo: string;
   tituloOriginal: Observable<string>;
   descripcion: Observable<string>;
-  lista: pelicula[];
+  lista: pelicula[] = [];
   filtro: pelicula[] = [];
   existe: boolean  = false;
 
-  constructor(private servicioPeliculas: PeliculaServiceService,private listaPeliculas:ListaPeliculasComponent) { 
-    
+  constructor(private servicioPeliculas: PeliculaServiceService) { 
+   
   }
 
   cambiarFiltro(titulo: string){
-    
-    this.servicioPeliculas.GetAll().subscribe(res => {
-      this.lista = res.results;
-    },
-    error => {
-      console.log(error);
-    }
-    );
-    this.lista?.forEach(element => {
-      
-      if( element.title.search(titulo) >= 0 ) {
+    if(titulo===""){
 
-        if(this.filtro.length == 0){
+      this.servicioPeliculas.GetAll().subscribe(res => {
+        res.results.forEach(element => {
           this.filtro.push(element);
-        }else{
-          this.filtro.forEach(x => {
-            if(x.id == element.id){
-              this.existe = true;
-            } 
-          });
-          if(this.existe == false){
-            this.filtro.push(element);
-            this.existe = false;
-          }
-          
-        }
+        });
+      },
+      error => {
+        console.log(error);
       }
+      );
+      this.filtrarBusqueda();
+    }
+    else{
+      this.servicioPeliculas.GetAll().subscribe(res => {
+        res.results.forEach(element => {
+          this.lista.push(element);
+        });
+      },
+      error => {
+        console.log(error);
+      }
+      );
 
-    });
-    this.filtro.forEach(element => {
-      console.log("filtro: "+element.title);
-    });
-
-    this.listaPeliculas.setPelicula(this.filtro);
-    
+      this.lista?.forEach(element => {
+        
+        if( element.title.search(titulo) >= 0 ) {
+  
+          if(this.filtro.length == 0){
+            this.filtro.push(element);
+          }else{
+            this.filtro.forEach(x => {
+              if(x.id == element.id){
+                this.existe = true;
+              }
+            });
+            if(this.existe == false){
+              this.filtro.push(element);
+              this.existe = false;
+            }
+            
+          }
+        }
+  
+      });
+      this.filtro.forEach(element => {
+        console.log("filtro: "+element.title);
+      });
+  
+      this.filtrarBusqueda();
+    }
   }
 
+  filtrarBusqueda(){
+    this.open.emit(this.filtro);
+  }
 
 }
