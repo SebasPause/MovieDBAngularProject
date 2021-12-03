@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnChanges, OnInit, Output, Input } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ObservadorService } from 'src/app/service/observador.service';
 import { genero } from '../models/genero.model';
@@ -15,13 +15,12 @@ import { PeliculaComponent } from './pelicula/pelicula.component';
 })
 export class ListaPeliculasComponent implements OnInit {
 
-  peliculas: pelicula[];
+  peliculas: pelicula[] = new Array<pelicula>();
   idPelicula: any;
   isVisible = false;
   isVisibleContainer = true;
   detalle: pelicula;
   mostrarTodo: boolean = true;
-  filtroObtenido: pelicula[]
 
   constructor(private peliculaService: PeliculaServiceService) { 
      
@@ -30,7 +29,9 @@ export class ListaPeliculasComponent implements OnInit {
   ngOnInit() {
     if(this.mostrarTodo == true){
       this.peliculaService.GetAll().subscribe(res => {
-        this.peliculas = res.results;
+        res.results.forEach(element => {
+          this.peliculas.push(element);
+        });
       },
       error => {
         console.log(error);
@@ -64,14 +65,20 @@ export class ListaPeliculasComponent implements OnInit {
   }
 
   setPelicula(filtro: any){
-    this.peliculas = filtro;   
-    this.mostrarTodo = false;
-    this.peliculas.forEach(element => {
-      console.log("titulo: "+element.title);
-      
+    console.log(this.peliculas.length);
+    
+    this.peliculas.forEach(e => {
+      delete this.peliculas[this.peliculas.indexOf(e)];
     });
-    
-    
+    filtro.forEach(element => {
+      element.trackId = Math.random() * (10000000000-0);
+      this.peliculas.push(element);
+    });  
+    this.mostrarTodo = false;
+  }
+
+  public trackItem(index: number,item: pelicula){
+    return item.trackId
   }
 
 }

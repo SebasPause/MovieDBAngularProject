@@ -6,6 +6,7 @@ import { PeliculaComponent } from './lista-peliculas/pelicula/pelicula.component
 import { PeliculaServiceService } from './service/pelicula-service.service';
 import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 import { DetalleComponent } from './lista-peliculas/detalle/detalle.component';
+import { FormsModule } from '@angular/forms';
 
 
 

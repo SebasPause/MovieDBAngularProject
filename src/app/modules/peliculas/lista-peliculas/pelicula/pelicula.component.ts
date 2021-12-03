@@ -12,7 +12,7 @@ import { ListaPeliculasComponent } from '../lista-peliculas.component';
   templateUrl: './pelicula.component.html',
   styleUrls: ['./pelicula.component.css']
 })
-export class PeliculaComponent implements OnInit {
+export class PeliculaComponent implements OnInit,OnChanges {
 
   @Input() pelicula: pelicula;
   nombreGenero: string;
@@ -46,5 +46,10 @@ export class PeliculaComponent implements OnInit {
     return this.listaGeneros?.find(x => x.id === id);
   }
 
+  ngOnChanges(){
+    console.log("algo cambia hijo");
+    
+    
+  }
 
 }
