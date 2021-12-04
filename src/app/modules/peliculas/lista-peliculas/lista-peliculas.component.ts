@@ -37,14 +37,12 @@ export class ListaPeliculasComponent implements OnInit, OnDestroy {
         console.log(error);
       }
       );
-      //if(this.observador.subsVar === undefined) {
-       
         this.observador.subsVar = this.observador.open.subscribe(async (filtro: pelicula[]) => {
           this.observador.lista = [];
           this.observador.filtro = [];
           await this.setPelicula(filtro);
         });
-      //}
+        
   }
 
   ngOnDestroy() {
