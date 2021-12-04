@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnChanges, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, Output, Input, EventEmitter, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ObservadorService } from 'src/app/service/observador.service';
 import { genero } from '../models/genero.model';
@@ -13,7 +13,7 @@ import { PeliculaComponent } from './pelicula/pelicula.component';
   templateUrl: './lista-peliculas.component.html',
   styleUrls: ['./lista-peliculas.component.css']
 })
-export class ListaPeliculasComponent implements OnInit {
+export class ListaPeliculasComponent implements OnInit, OnDestroy {
 
   peliculas: pelicula[] = new Array<pelicula>();
   idPelicula: any;
@@ -28,8 +28,8 @@ export class ListaPeliculasComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.peliculaService.GetAll().subscribe(res => {
-        res.results.forEach(element => {
+      this.peliculaService.GetAll().subscribe(async res => {
+        await res.results.forEach(element => {
           this.peliculas.push(element);
         });
       },
@@ -37,12 +37,18 @@ export class ListaPeliculasComponent implements OnInit {
         console.log(error);
       }
       );
-      if(this.observador.subsVar === undefined) {
-        this.observador.subsVar = this.observador.open.subscribe((filtro: any) => {
-          this.setPelicula(filtro);
+      //if(this.observador.subsVar === undefined) {
+       
+        this.observador.subsVar = this.observador.open.subscribe(async (filtro: pelicula[]) => {
+          this.observador.lista = [];
+          this.observador.filtro = [];
+          await this.setPelicula(filtro);
         });
-      } 
-    this.mostrarId();
+      //}
+  }
+
+  ngOnDestroy() {
+    this.observador.subsVar.unsubscribe();
   }
 
   mostrarDetalle(pelicula: any){
@@ -66,19 +72,8 @@ export class ListaPeliculasComponent implements OnInit {
   }
 
   setPelicula(filtro: any){
-    /*filtro.forEach(element => {
-      this.peliculas.push(element);
-    });*/
     this.peliculas = filtro;
   }
-
-
-  mostrarId(){
-    console.log(this.idPagina);
-    
-  }
-
-  
 
 }
 

@@ -11,11 +11,11 @@ export class ObservadorService {
 
   open: EventEmitter<any> = new EventEmitter();
   subsVar: Subscription;
-  titulo: string;
+  titulo: Observable<string>;
   tituloOriginal: Observable<string>;
   descripcion: Observable<string>;
-  lista: pelicula[] = [];
-  filtro: pelicula[] = [];
+  lista: Array<pelicula> = new Array();
+  filtro: Array<pelicula> = new Array();
   existe: boolean  = false;
 
   constructor(private servicioPeliculas: PeliculaServiceService) { 
@@ -23,9 +23,10 @@ export class ObservadorService {
   }
 
   cambiarFiltro(titulo: string){
-    if(titulo===""){
+    
+    if(titulo === " "){
 
-      this.servicioPeliculas.GetAll().subscribe(res => {
+      this.servicioPeliculas.GetAll().subscribe(async res => {
         res.results.forEach(element => {
           this.filtro.push(element);
         });
@@ -34,23 +35,24 @@ export class ObservadorService {
         console.log(error);
       }
       );
+
       this.filtrarBusqueda();
     }
     else{
-      this.servicioPeliculas.GetAll().subscribe(res => {
-        res.results.forEach(element => {
+      
+      this.servicioPeliculas.GetAll().subscribe(async res => {
+        await Promise.all(res.results.map(async (element) =>{
           this.lista.push(element);
-        });
+        }));
       },
       error => {
         console.log(error);
       }
       );
-
-      this.lista?.forEach(element => {
-        
+      
+      this.lista.forEach(element => {
         if( element.title.search(titulo) >= 0 ) {
-  
+          
           if(this.filtro.length == 0){
             this.filtro.push(element);
           }else{
@@ -68,10 +70,7 @@ export class ObservadorService {
         }
   
       });
-      this.filtro.forEach(element => {
-        console.log("filtro: "+element.title);
-      });
-  
+
       this.filtrarBusqueda();
     }
   }

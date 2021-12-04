@@ -18,7 +18,7 @@ export class DetalleComponent implements OnInit {
   constructor(private  peliculaService: PeliculaServiceService,private listaPeliculas: ListaPeliculasComponent) { }
 
   ngOnInit() {
-     
+     this.ocultar();
   }
 
   ocultar(){

@@ -13,7 +13,7 @@ export class FiltrosComponent implements OnInit {
   constructor(private observador: ObservadorService) { }
 
   ngOnInit(): void {
-    
+    this.observador.cambiarFiltro("");
   }
 
   cambiarBusqueda(event: any,filtro: string): void{

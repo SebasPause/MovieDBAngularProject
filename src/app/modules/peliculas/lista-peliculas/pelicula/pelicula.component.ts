@@ -12,15 +12,15 @@ import { ListaPeliculasComponent } from '../lista-peliculas.component';
   templateUrl: './pelicula.component.html',
   styleUrls: ['./pelicula.component.css']
 })
-export class PeliculaComponent implements OnInit,OnChanges {
+export class PeliculaComponent implements OnInit {
 
   @Input() pelicula: pelicula;
   nombreGenero: string;
   listaGeneros: genero[];
-  numero: number;
 
-  constructor(private peliculaService: PeliculaServiceService,private listaPelicula: ListaPeliculasComponent) { 
-    this.numero = 1;
+
+  constructor(private peliculaService: PeliculaServiceService) { 
+
   }
 
   ngOnInit() {
@@ -44,12 +44,6 @@ export class PeliculaComponent implements OnInit,OnChanges {
 
   getNameById(id?){
     return this.listaGeneros?.find(x => x.id === id);
-  }
-
-  ngOnChanges(){
-    console.log("algo cambia hijo");
-    
-    
   }
 
 }

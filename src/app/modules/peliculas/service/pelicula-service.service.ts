@@ -13,7 +13,7 @@ import { pelicula } from '../models/pelicula.model';
 export class PeliculaServiceService {
 
   constructor(private http: HttpClient) { 
-
+    
   }
 
   public GetAll(): Observable<listaPeliculas> {
