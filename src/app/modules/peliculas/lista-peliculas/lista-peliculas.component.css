@@ -32,7 +32,7 @@
     width: 70%;
     border: 3x solid black;
     border-style: solid;
-    position: fixed;
+    position: relative;
     margin-left: 15%;
     margin-top: 5%;
    
