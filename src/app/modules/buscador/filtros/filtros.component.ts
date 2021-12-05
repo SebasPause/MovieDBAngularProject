@@ -52,7 +52,8 @@ export class FiltrosComponent implements OnInit {
     this.tituloPrincipal.nativeElement.value  = ""
     this.tituloOriginal.nativeElement.value  = ""
     this.descripcion.nativeElement.value  = ""
-    this.observador.cambiarFiltro("","populares");
+    
+    this.observador.cambiarFiltro("",'populares');
   }
 
 }

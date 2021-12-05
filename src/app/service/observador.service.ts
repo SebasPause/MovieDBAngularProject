@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { ListaPeliculasComponent } from '../modules/peliculas/lista-peliculas/lista-peliculas.component';
+import { listaPeliculas } from '../modules/peliculas/models/listaPeliculas.model';
 import { pelicula } from '../modules/peliculas/models/pelicula.model';
 import { PeliculaServiceService } from '../modules/peliculas/service/pelicula-service.service';
 
@@ -17,6 +18,7 @@ export class ObservadorService {
   lista: Array<pelicula> = new Array();
   filtro: Array<pelicula> = new Array();
   existe: boolean  = false;
+  populares: boolean = false;
 
   constructor(private servicioPeliculas: PeliculaServiceService) { 
    
@@ -34,6 +36,10 @@ export class ObservadorService {
       case 'descripcion':
         this.filtrar(titulo,opcion)
         break;
+      
+      case 'populares':
+        this.filtrar(titulo,opcion)
+        break;
     }
     
   }
@@ -43,8 +49,8 @@ export class ObservadorService {
   }
 
   filtrar(cadena: string,opcion){
-    if(cadena === " "){
-
+    if(cadena === " " && opcion != 'populares'){
+      
       this.servicioPeliculas.GetAll().subscribe(async res => {
         res.results.forEach(element => {
           this.filtro.push(element);
@@ -59,6 +65,7 @@ export class ObservadorService {
     }
     else{
       switch(opcion){
+
         case 'titulo':
           this.servicioPeliculas.GetAll().subscribe(async res => {
             await Promise.all(res.results.map(async (element) =>{
@@ -93,6 +100,7 @@ export class ObservadorService {
     
           this.filtrarBusqueda();
           break;
+
         case 'tituloOriginal':
           this.servicioPeliculas.GetAll().subscribe(async res => {
             await Promise.all(res.results.map(async (element) =>{
@@ -127,6 +135,7 @@ export class ObservadorService {
     
           this.filtrarBusqueda();
           break;
+
         case 'descripcion':
           this.servicioPeliculas.GetAll().subscribe(async res => {
             await Promise.all(res.results.map(async (element) =>{
@@ -161,10 +170,11 @@ export class ObservadorService {
     
           this.filtrarBusqueda();
           break;
+
         case 'populares':
-          this.servicioPeliculas.GetAll().subscribe(async res => {
-            await Promise.all(res.results.map(async (element) =>{
-              this.lista.push(element);
+          this.servicioPeliculas.getTopRated().subscribe(async res => {
+            await Promise.all(res.results.map(async element => {
+              await this.lista.push(element);
             }));
           },
           error => {
@@ -172,9 +182,10 @@ export class ObservadorService {
           }
           );
 
-          this.filtro = this.lista;
-          var sortedArray: number[] = numericArray.sort((n1,n2) => n1 - n2);
-          
+          this.lista.forEach(element => {
+            this.filtro.push(element);
+          });
+
           this.filtrarBusqueda();
           break;
       }

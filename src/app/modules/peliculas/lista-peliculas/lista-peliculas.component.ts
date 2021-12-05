@@ -37,11 +37,11 @@ export class ListaPeliculasComponent implements OnInit, OnDestroy {
         console.log(error);
       }
       );
-        this.observador.subsVar = this.observador.open.subscribe(async (filtro: pelicula[]) => {
-          this.observador.lista = [];
-          this.observador.filtro = [];
-          await this.setPelicula(filtro);
-        });
+      this.observador.subsVar = this.observador.open.subscribe(async (filtro: pelicula[]) => {
+        this.observador.lista = [];
+        this.observador.filtro = [];
+        await this.setPelicula(filtro);
+      });
         
   }
 

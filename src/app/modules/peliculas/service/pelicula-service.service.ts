@@ -28,6 +28,10 @@ export class PeliculaServiceService {
     return this.http.get<pelicula>('https://api.themoviedb.org/3/movie/'+id+'?api_key=7d1e614246e33b9b52f42a293ca206f7');
   }
 
+  public getTopRated(): Observable<listaPeliculas> {
+    return this.http.get<listaPeliculas>('https://api.themoviedb.org/3/movie/top_rated?api_key=7d1e614246e33b9b52f42a293ca206f7');
+  }
+
 }
 
 
