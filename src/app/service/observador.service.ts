@@ -161,6 +161,22 @@ export class ObservadorService {
     
           this.filtrarBusqueda();
           break;
+        case 'populares':
+          this.servicioPeliculas.GetAll().subscribe(async res => {
+            await Promise.all(res.results.map(async (element) =>{
+              this.lista.push(element);
+            }));
+          },
+          error => {
+            console.log(error);
+          }
+          );
+
+          this.filtro = this.lista;
+          var sortedArray: number[] = numericArray.sort((n1,n2) => n1 - n2);
+          
+          this.filtrarBusqueda();
+          break;
       }
       
     }
