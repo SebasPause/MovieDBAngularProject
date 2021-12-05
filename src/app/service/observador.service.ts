@@ -18,7 +18,7 @@ export class ObservadorService {
   lista: Array<pelicula> = new Array();
   filtro: Array<pelicula> = new Array();
   existe: boolean  = false;
-  populares: boolean = false;
+  contador: number = 0;
 
   constructor(private servicioPeliculas: PeliculaServiceService) { 
    
@@ -182,8 +182,12 @@ export class ObservadorService {
           }
           );
 
+         this.contador = 0
           this.lista.forEach(element => {
-            this.filtro.push(element);
+            this.contador += 1;
+            if(this.contador < 10) {
+              this.filtro.push(element);
+            }
           });
 
           this.filtrarBusqueda();
