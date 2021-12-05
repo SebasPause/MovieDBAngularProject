@@ -38,7 +38,7 @@ export class FiltrosComponent implements OnInit {
         break;
       }
       case 'descripcion':{
-        this.tituloOriginal.nativeElement.value  = ""
+        this.tituloPrincipal.nativeElement.value  = ""
         this.tituloOriginal.nativeElement.value  = ""
 
         this.observador.descripcion = event.value;
@@ -46,6 +46,13 @@ export class FiltrosComponent implements OnInit {
         break;
       }
     }
+  }
+
+  filtrar10(){
+    this.tituloPrincipal.nativeElement.value  = ""
+    this.tituloOriginal.nativeElement.value  = ""
+    this.descripcion.nativeElement.value  = ""
+    this.observador.cambiarFiltro("","populares");
   }
 
 }

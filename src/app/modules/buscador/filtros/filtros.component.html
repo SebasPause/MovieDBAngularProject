@@ -3,6 +3,6 @@
         <tr><p>Titulo   <input #tituloPrincipal type="text" (input)="cambiarBusqueda($event.target,'titulo')"></p></tr>
         <tr><p>Titulo Original  <input #tituloOriginal type="text" (input)="cambiarBusqueda($event.target,'tituloOriginal')"></p></tr>
         <tr><p>Descripción  <input #descripcion type="text" (input)="cambiarBusqueda($event.target,'descripcion')"></p></tr>
-        <button>Filtrar 10 más populares</button>
+        <button (click)="filtrar10()">Filtrar 10 más populares</button>
     </div>
 </div>
