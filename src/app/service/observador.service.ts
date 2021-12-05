@@ -22,9 +22,28 @@ export class ObservadorService {
    
   }
 
-  cambiarFiltro(titulo: string){
+  cambiarFiltro(titulo: string,opcion: string){
+    switch(opcion){
+      case 'titulo':
+        this.filtrar(titulo,opcion)
+        break;
+      case 'tituloOriginal':
+        this.filtrar(titulo,opcion)
+        break;
+
+      case 'descripcion':
+        this.filtrar(titulo,opcion)
+        break;
+    }
     
-    if(titulo === " "){
+  }
+
+  filtrarBusqueda(){
+    this.open.emit(this.filtro);
+  }
+
+  filtrar(cadena: string,opcion){
+    if(cadena === " "){
 
       this.servicioPeliculas.GetAll().subscribe(async res => {
         res.results.forEach(element => {
@@ -39,44 +58,112 @@ export class ObservadorService {
       this.filtrarBusqueda();
     }
     else{
-      
-      this.servicioPeliculas.GetAll().subscribe(async res => {
-        await Promise.all(res.results.map(async (element) =>{
-          this.lista.push(element);
-        }));
-      },
-      error => {
-        console.log(error);
-      }
-      );
-      
-      this.lista.forEach(element => {
-        if( element.title.search(titulo) >= 0 ) {
-          
-          if(this.filtro.length == 0){
-            this.filtro.push(element);
-          }else{
-            this.filtro.forEach(x => {
-              if(x.id == element.id){
-                this.existe = true;
-              }
-            });
-            if(this.existe == false){
-              this.filtro.push(element);
-              this.existe = false;
-            }
-            
+      switch(opcion){
+        case 'titulo':
+          this.servicioPeliculas.GetAll().subscribe(async res => {
+            await Promise.all(res.results.map(async (element) =>{
+              this.lista.push(element);
+            }));
+          },
+          error => {
+            console.log(error);
           }
-        }
-  
-      });
-
-      this.filtrarBusqueda();
+          );
+          
+          this.lista.forEach(element => {
+            if( element.title.search(cadena) >= 0 ) {
+              
+              if(this.filtro.length == 0){
+                this.filtro.push(element);
+              }else{
+                this.filtro.forEach(x => {
+                  if(x.id == element.id){
+                    this.existe = true;
+                  }
+                });
+                if(this.existe == false){
+                  this.filtro.push(element);
+                  this.existe = false;
+                }
+                
+              }
+            }
+      
+          });
+    
+          this.filtrarBusqueda();
+          break;
+        case 'tituloOriginal':
+          this.servicioPeliculas.GetAll().subscribe(async res => {
+            await Promise.all(res.results.map(async (element) =>{
+              this.lista.push(element);
+            }));
+          },
+          error => {
+            console.log(error);
+          }
+          );
+          
+          this.lista.forEach(element => {
+            if( element.original_title.search(cadena) >= 0 ) {
+              
+              if(this.filtro.length == 0){
+                this.filtro.push(element);
+              }else{
+                this.filtro.forEach(x => {
+                  if(x.id == element.id){
+                    this.existe = true;
+                  }
+                });
+                if(this.existe == false){
+                  this.filtro.push(element);
+                  this.existe = false;
+                }
+                
+              }
+            }
+      
+          });
+    
+          this.filtrarBusqueda();
+          break;
+        case 'descripcion':
+          this.servicioPeliculas.GetAll().subscribe(async res => {
+            await Promise.all(res.results.map(async (element) =>{
+              this.lista.push(element);
+            }));
+          },
+          error => {
+            console.log(error);
+          }
+          );
+          
+          this.lista.forEach(element => {
+            if( element.overview.search(cadena) >= 0 ) {
+              
+              if(this.filtro.length == 0){
+                this.filtro.push(element);
+              }else{
+                this.filtro.forEach(x => {
+                  if(x.id == element.id){
+                    this.existe = true;
+                  }
+                });
+                if(this.existe == false){
+                  this.filtro.push(element);
+                  this.existe = false;
+                }
+                
+              }
+            }
+      
+          });
+    
+          this.filtrarBusqueda();
+          break;
+      }
+      
     }
-  }
-
-  filtrarBusqueda(){
-    this.open.emit(this.filtro);
   }
 
 }
