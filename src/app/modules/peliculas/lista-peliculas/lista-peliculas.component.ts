@@ -41,8 +41,9 @@ export class ListaPeliculasComponent implements OnInit, OnDestroy {
         this.observador.lista = [];
         this.observador.filtro = [];
         await this.setPelicula(filtro);
-      });
         
+      }); 
+      
   }
 
   ngOnDestroy() {

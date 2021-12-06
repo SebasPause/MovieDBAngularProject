@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ObservadorService } from 'src/app/service/observador.service';
+import { PeliculaServiceService } from '../../peliculas/service/pelicula-service.service';
 
 @Component({
   selector: 'app-filtros',
@@ -12,11 +13,12 @@ export class FiltrosComponent implements OnInit {
   @ViewChild('tituloPrincipal') tituloPrincipal:ElementRef;
   @ViewChild('tituloOriginal') tituloOriginal:ElementRef;
   @ViewChild('descripcion') descripcion:ElementRef;
+  @ViewChild('boton') boton:ElementRef;
 
-  constructor(private observador: ObservadorService) { }
+  constructor(private observador: ObservadorService,private servicioPeliculas: PeliculaServiceService) { }
 
   ngOnInit(): void {
-    this.observador.cambiarFiltro("",'titulo');
+    this.observador.cambiarFiltro("",'');
   }
 
   cambiarBusqueda(event: any,filtro: string): void{
@@ -52,7 +54,12 @@ export class FiltrosComponent implements OnInit {
     this.tituloPrincipal.nativeElement.value  = ""
     this.tituloOriginal.nativeElement.value  = ""
     this.descripcion.nativeElement.value  = ""
-    
+
+    if(this.boton.nativeElement.innerText == 'Filtrar 10 más populares'){
+      this.boton.nativeElement.innerText = "Pulsa otra vez";
+    }else{
+      this.boton.nativeElement.innerText = 'Filtrar 10 más populares';
+    }
     this.observador.cambiarFiltro("",'populares');
   }
 
