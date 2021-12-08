@@ -1,27 +1,46 @@
 # MovieDBAngularProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
+Este proyecto ha sido generado con [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7 y esta disponible en el siguiente url [MovieDBAngularProject](https://sebaspause.github.io/MovieDBAngularProject/#/)
 
-## Development server
+## `Descripción`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Este proyecto trata de consumir una [API REST](https://es.wikipedia.org/wiki/Transferencia_de_Estado_Representacional) utilizando las siguientes tecnologías:
 
-## Code scaffolding
+1. *HTML5*
+2. *ES6*
+3. *Bootstrap*
+4. *Angular*
+5. *API*
+6. *Git*
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## `Funcionamiento`
 
-## Build
+La aplicación permite hacer una búsqueda con los siguientes filtros:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Titulo**
+- **Titulo Original**
+- **Overview - Descripción**
 
-## Running unit tests
+Además de estos filtros tiene un botón para filtrar por las 10 películas mas populares
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## `Estructura`
 
-## Running end-to-end tests
+La estructura de la aplicación se basa en el desarrollo de dos módulos con el fin de conectarlos entre ellos y compartir información a través de un servicio común para ambos modulos.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+> ### Módulos
+> - Buscador
+> - Películas
+> ### Servicio
+> - Observador
 
-## Further help
+Este servicio se encarga de obtener los cambios que se realizan en el módulo `Buscador` para avisar al módulo `Películas` para que se refresque con los filtros especificados.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Al pulsar sobre cualquier objeto que se muestra, se mostrará una nueva ventana con más detalles acerca del objeto.
+
+## `Dificultades`
+
+La mayor dificultad encontrada en el desarrollo de este proyecto ha sido el tema de compartir datos entre diferentes módulos. 
+
+Este problema se solucionó gracias a la clase [EventEmitter](https://angular.io/api/core/EventEmitter).
+
+
